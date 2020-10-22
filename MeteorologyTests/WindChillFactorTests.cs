@@ -14,8 +14,8 @@ namespace Meteorology.Tests
         [TestMethod]
         public void WindChillFactorTest_ValidInput()
         {
-            WindSpeed ws = new WindSpeed(10, WindSpeed.Unit.MeterPerSecond);
-            Temperature t = new Temperature(5, Temperature.Scale.Celsius);
+            WindSpeed ws = new WindSpeed(10, Unit.MeterPerSecond);
+            Temperature t = new Temperature(5, Scale.Celsius);
 
             WindChillFactor factor = new WindChillFactor(t, ws);
 
@@ -27,8 +27,8 @@ namespace Meteorology.Tests
         [TestMethod]
         public void WindChillFactorTest_TemperatureTooHigh()
         {
-            WindSpeed ws = new WindSpeed(10, WindSpeed.Unit.MeterPerSecond);
-            Temperature t = new Temperature(50.1, Temperature.Scale.Fahrenheit);
+            WindSpeed ws = new WindSpeed(10, Unit.MeterPerSecond);
+            Temperature t = new Temperature(50.1, Scale.Fahrenheit);
 
             Assert.ThrowsException<MeteorologyException>(() =>
             {
@@ -39,8 +39,8 @@ namespace Meteorology.Tests
         [TestMethod]
         public void WindChillFactorTest_TemperatureNotTooHigh()
         {
-            WindSpeed ws = new WindSpeed(10, WindSpeed.Unit.MeterPerSecond);
-            Temperature t = new Temperature(50, Temperature.Scale.Fahrenheit);
+            WindSpeed ws = new WindSpeed(10, Unit.MeterPerSecond);
+            Temperature t = new Temperature(50, Scale.Fahrenheit);
 
             WindChillFactor factor = new WindChillFactor(t, ws);
 
@@ -52,8 +52,8 @@ namespace Meteorology.Tests
         [TestMethod]
         public void WindChillFactorTest_WindspeedTooLow()
         {
-            WindSpeed ws = new WindSpeed(2.9, WindSpeed.Unit.MilesPerHour);
-            Temperature t = new Temperature(5, Temperature.Scale.Celsius);
+            WindSpeed ws = new WindSpeed(2.9, Unit.MilesPerHour);
+            Temperature t = new Temperature(5, Scale.Celsius);
 
             Assert.ThrowsException<MeteorologyException>(() =>
             {
@@ -64,8 +64,8 @@ namespace Meteorology.Tests
         [TestMethod]
         public void WindChillFactorTest_WindspeedNotTooLow()
         {
-            WindSpeed ws = new WindSpeed(3, WindSpeed.Unit.MilesPerHour);
-            Temperature t = new Temperature(5, Temperature.Scale.Celsius);
+            WindSpeed ws = new WindSpeed(3, Unit.MilesPerHour);
+            Temperature t = new Temperature(5, Scale.Celsius);
 
             WindChillFactor factor = new WindChillFactor(t, ws);
 

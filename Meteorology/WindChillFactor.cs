@@ -12,9 +12,9 @@ namespace Meteorology
     */
     public class WindChillFactor
     {
-        public double WindChillCelsius => CalculateWindChillFactor(Temperature.Scale.Celsius);
+        public double WindChillCelsius => CalculateWindChillFactor(Scale.Celsius);
 
-        public double WindChillFahrenheit => CalculateWindChillFactor(Temperature.Scale.Fahrenheit);
+        public double WindChillFahrenheit => CalculateWindChillFactor(Scale.Fahrenheit);
 
         public double WattsPerMeterSquared => CalculateWattsPerMeterSquared();
 
@@ -37,7 +37,7 @@ namespace Meteorology
             Wind = wind;
         }
 
-        private double CalculateWindChillFactor(Temperature.Scale resultScale)
+        private double CalculateWindChillFactor(Scale resultScale)
         {
             double result = 35.74 +
                 (0.6215 * Temperature.Fahrenheit) -
@@ -46,9 +46,9 @@ namespace Meteorology
 
             switch (resultScale)
             {
-                case Temperature.Scale.Celsius:
+                case Scale.Celsius:
                     return Temperature.ConvertFahrenheitToCelsius(result);
-                case Temperature.Scale.Fahrenheit:
+                case Scale.Fahrenheit:
                     return result;
                 default:
                     throw new MeteorologyException("Unknown scale");

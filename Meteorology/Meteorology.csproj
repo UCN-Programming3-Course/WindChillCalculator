@@ -42,8 +42,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MeteorologyException.cs" />
+    <Compile Include="SpeedUnit.cs" />
     <Compile Include="Temperature.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TemperatureScale.cs" />
     <Compile Include="WindChillFactor.cs" />
     <Compile Include="WindSpeed.cs" />
   </ItemGroup>

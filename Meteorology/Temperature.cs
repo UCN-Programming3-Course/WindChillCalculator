@@ -22,12 +22,6 @@ namespace Meteorology
             _scale = scale;
         }
 
-        public enum Scale
-        {
-            Celsius,
-            Fahrenheit,
-        }
-
         internal static double ConvertFahrenheitToCelsius(double temperature)
         {
             return (5d / 9d) * (temperature - 32);

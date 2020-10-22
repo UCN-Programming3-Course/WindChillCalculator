@@ -3,10 +3,71 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:system="clr-namespace:System;assembly=mscorlib"
         xmlns:local="clr-namespace:WindChillCalculator"
+        xmlns:meteorology="clr-namespace:Meteorology;assembly=Meteorology"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="Wind Chill Factor Calculator" Height="450" Width="450">
+    <Window.Resources>
+        <Style TargetType="Label">
+            <Setter Property="Margin" Value="5" />
+        </Style>
+        <Style TargetType="TextBox">
+            <Setter Property="Margin" Value="5" />
+            <Setter Property="Padding" Value="3" />
+        </Style>
+        <Style TargetType="ComboBox">
+            <Setter Property="Margin" Value="5" />
+        </Style>
+        <Style TargetType="Button">
+            <Setter Property="Margin" Value="5" />
+            <Setter Property="FontSize" Value="20" />
+            <Setter Property="Padding" Value="5" />
+        </Style>
+        <Style TargetType="TextBlock" x:Key="Result">
+            <Setter Property="FontSize" Value="20" />
+            <Setter Property="Foreground" Value="ForestGreen"/>
+            <Setter Property="Padding" Value="5, 20, 5, 5" />
+        </Style>
+        <ObjectDataProvider x:Key="TemperatureScaleEnum" MethodName="GetValues" ObjectType="{x:Type system:Enum}">
+            <ObjectDataProvider.MethodParameters>
+                <x:Type TypeName="meteorology:Scale" />
+            </ObjectDataProvider.MethodParameters>
+        </ObjectDataProvider>
+        <ObjectDataProvider x:Key="SpeedUnitEnum" MethodName="GetValues" ObjectType="{x:Type system:Enum}">
+            <ObjectDataProvider.MethodParameters>
+                <x:Type TypeName="meteorology:Unit" />
+            </ObjectDataProvider.MethodParameters>
+        </ObjectDataProvider>
+    </Window.Resources>
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0" Margin="5">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <Label Grid.Row="0" Grid.Column="0" Content="Temperature:"/>
+            <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding Temperature}" />
+            <Label Grid.Row="0" Grid.Column="2" Content="Scale:" />
+            <ComboBox Grid.Row="0" Grid.Column="3" SelectedItem="{Binding Scale}" ItemsSource="{Binding Source={StaticResource TemperatureScaleEnum}}" />
+            <Label Grid.Row="1" Grid.Column="0" Content="Wind Speed:" />
+            <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding WindSpeed}" />
+            <Label Grid.Row="1" Grid.Column="2" Content="Unit:" />
+            <ComboBox Grid.Row="1" Grid.Column="3" SelectedItem="{Binding Unit}" ItemsSource="{Binding Source={StaticResource SpeedUnitEnum}}" />
+        </Grid>
+        <Button Content="Calculate" Grid.Row="1" Command="{Binding CalculateCommand}" />
+        <TextBlock Style="{StaticResource Result}" Grid.Row="2" TextWrapping="Wrap" Text="{Binding ResultText, Mode=TwoWay}" />
+
     </Grid>
 </Window>

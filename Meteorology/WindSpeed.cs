@@ -20,11 +20,5 @@ namespace Meteorology
             _speed = speed;
             _unit = unit;
         }
-
-        public enum Unit
-        {
-            MeterPerSecond,
-            MilesPerHour
-        }
     }
 }
